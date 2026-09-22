@@ -1,0 +1,7 @@
+{
+  "expectedErrorText": "Bad credentials",
+  "invalidUsers": [
+    { "description": "valid email + wrong password", "email": "admin@admin.com",    "password": "wrong-password" },
+    { "description": "unregistered email",           "email": "nobody@example.com", "password": "admin123" }
+  ]
+}
