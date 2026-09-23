@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 target/ 
+=======
+target/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+test-output/ 
+>>>>>>> refs/remotes/origin/main

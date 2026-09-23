@@ -1,0 +1,11 @@
+{
+  "expectedConfirmationText": "order",
+  "validShipping": [
+    { "description": "domestic order - India",   "phone": "9876543210",  "street": "12 MG Road",      "city": "Bengaluru", "country": "India" },
+    { "description": "international - Germany",  "phone": "4915123456789", "street": "5 Hauptstrasse", "city": "Berlin",    "country": "Germany" }
+  ],
+  "incompleteShipping": {
+    "description": "phone only, street/city/country missing",
+    "phone": "9876543210", "street": "", "city": "", "country": ""
+  }
+}

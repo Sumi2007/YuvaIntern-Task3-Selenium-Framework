@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="QA Practice E-commerce - Regression Suite" verbose="1">
+
+    <listeners>
+        <listener class-name="com.qapractice.framework.reporting.TestListener"/>
+        <listener class-name="com.qapractice.framework.reporting.RetryTransformer"/>
+    </listeners>
+
+    <test name="Regression">
+        <packages>
+            <package name="com.qapractice.tests"/>
+        </packages>
+    </test>
+
+</suite>
