@@ -25,7 +25,7 @@
 
 | Concern | Choice | Version | Why this and not the alternative |
 |---|---|---|---|
-| Language | Java | 17 | Records make immutable test-data models one-liners; LTS |
+| Language | Java | 17 target/21.0.8 runtime | Records make immutable test-data models one-liners; Java 17 is the project target LTS |
 | Browser automation | Selenium WebDriver | 4.27.0 | Requirement of the task; includes Selenium Manager (no manual driver downloads) |
 | Test runner | TestNG | 7.10.2 | Groups, `@DataProvider`, listeners, retry analyzer and parallel execution built in (JUnit 5 needs extra extensions for the same) |
 | Build | Maven | 3.9+ | Standard dependency management + Surefire suite selection |
@@ -256,7 +256,7 @@ Total: **8 methods → 10 executions**. Smoke suite = TC-LOGIN-01, TC-LOGIN-03, 
 | `LoginPage` | Email / Password / Submit / message | `#email` / `#password` / `#submitLoginBtn` / `#message` |
 | `ShopPage` | Product card / title / price / Add to cart / Logout | `.shop-item` / `.shop-item-title` / `.shop-item-price` / `.shop-item-button` / `#logout` |
 | `CartComponent` | Rows / title / price / remove / total / checkout | `.cart-items .cart-row` / `.cart-item-title` / `.cart-price` / `.btn-danger` / `.cart-total-price` / `.btn-purchase` |
-| `CheckoutPage` | Phone / Street / City / Country / Submit / message | `#phone` / `#street` / `#city` / `#countries_dropdown_menu` / `#submitOrderBtn` / `#message` |
+| `CheckoutPage` | Phone / Street / City / Country / Submit / message | `#phone` / `name=street` / `name=city` / `#countries_dropdown_menu` / `#submitOrderBtn` / `#message` |
 
 ---
 
@@ -267,7 +267,7 @@ The task asks to *validate* that new tests can be added easily. These are the co
 | Change you want | Files you touch | Framework files touched |
 |---|---|---|
 | New test in an existing area | 1 test class (add a method) | 0 |
-| New test class | 1 new file `extends BaseTest` | 0 (the `com.qapractice.tests` package is scanned by `testng.xml`) |
+| New test class | 1 new file `extends BaseTest` | 0 – `testng.xml` includes the `com.qapractice.tests` package |
 | New data-driven case (e.g. another country) | 1 JSON file (add a row) | 0 – no Java change at all |
 | New page | 1 new class `extends BasePage` | 0 |
 | New browser | `DriverFactory` (1 case per switch + 1 options method) | 1 |
@@ -327,18 +327,69 @@ Append to `validShipping` in `checkout.json`:
 
 ---
 
-## 12. Execution evidence (fill in after your run)
+## 12. Execution evidence 
 
-Paste the real results of your run here before submitting:
+### Final Regression Execution
 
-| Item | Your result |
-|---|---|
-| Date / OS / Browser + version | |
-| Command used | `mvn clean test` |
-| TestNG summary (`Tests run / Failures / Skipped`) | |
-| Screenshot of the HTML report (`target/reports`) | |
-| Excerpt of the log file (`target/logs`) | |
-| Screenshot of the extensibility example (TC-CART-04 running) | |
+**Execution date:** 23 September 2026  
+**Operating System:** Windows 11  
+**Browser:** Google Chrome 154.0.8037.58  
+**Selenium WebDriver:** 4.27.0  
+**TestNG:** 7.10.2  
+**Java:** 21.0.8  
+**Environment:** QA  
+**Suite:** QA Practice E-commerce - Regression Suite
+
+**Execution method:** Eclipse TestNG execution using `testng.xml`
+The final regression suite was verified through the Eclipse TestNG runner using testng.xml; the README also documents the equivalent Maven execution command for reproducible command-line execution.
+
+**Final TestNG Result:**
+
+===============================================
+
+QA Practice E-commerce - Regression Suite
+
+Total tests run: 10, Passes: 10, Failures: 0, Skips: 0
+===============================================
+
+**Execution summary:**
+
+| Test Area | Tests Executed | Passed | Failed | Skipped |
+|---|---:|---:|---:|---:|
+| Login | 4 | 4 | 0 | 0 |
+| Cart | 3 | 3 | 0 | 0 |
+| Checkout | 3 | 3 | 0 | 0 |
+| **Total** | **10** | **10** | **0** | **0** |
+
+**Validation evidence:**
+- All 10 test executions completed successfully.
+- A fresh WebDriver session was created and closed for each test.
+- Login scenarios validated valid login, invalid credentials, and logout.
+- Cart scenarios validated adding products, total calculation, and product removal.
+- Checkout scenarios validated required-field rejection and successful orders for India and Germany.
+- No test failures or skipped tests were reported.
+
+### HTML Report Evidence
+
+The final ExtentReports execution recorded 10 tests passed, 0 failed, and 0 skipped.
+
+![ExtentReports Dashboard](docs/Screenshots/extent-report.png)
+
+### Execution Log Evidence
+
+The Eclipse TestNG console output confirms the final regression execution completed with 10 tests passed, 0 failed, and 0 skipped.
+
+![Execution Log Summary](docs/Screenshots/execution-log.png)
+
+### Extensibility Validation Evidence
+
+TC-CART-04 was added as a new cart test to validate that the framework supports adding a new test without changes to the existing framework components. The test passed successfully along with the existing cart tests: 4 tests run, 4 passed, 0 failed, and 0 skipped.
+
+![Extensibility Test Evidence](docs/Screenshots/extensibility-test.png)
+
+The framework was validated successfully with the final regression and extensibility executions described above.
+
+README updated with final execution evidence and extensibility validation.
 
 ---
 
